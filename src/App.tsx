@@ -19,6 +19,8 @@ import RoomPage from "./Components/Room/RoomPage";
 import FormPage from "./Components/Form/FormPage";
 import ConfirmationPage from "./Components/Confirmation/ConfirmationPage";
 import { useLocation } from "react-router-dom";
+import MyBooking from "./Components/Booking/MyBooking";
+import Profile from "./Components/Profile/Profile";
 
 const { Header, Sider } = Layout;
 
@@ -49,17 +51,15 @@ function App() {
 
             {/* Hotel Chain Pages */}
             <Route path="/hotel-chains" element={<HotelChainsPage />} />
-            <Route
-              path="/hotel-chains/:chainId"
-              element={<HotelChainsPage />}
-            />
+            <Route path="/hotel-chains/:chainId" element={<HotelPage />} />
 
             {/* Hotel Page */}
             <Route path="/hotels/:hotelId" element={<HotelPage />} />
 
             {/* Room Page */}
             <Route path="/rooms/:roomId" element={<RoomPage />} />
-
+            <Route path="/mybooking" element={<MyBooking />} />
+            <Route path="/profile" element={<Profile />} />
             {/* Form Page */}
             <Route path="/forms/:formType" element={<FormPage />} />
           </Route>
@@ -112,17 +112,20 @@ function renderPage() {
 
   if (currentPath === "/home") {
     return <HomePage />;
-  } else if (
-    currentPath === "/hotel-chains" ||
-    currentPath.startsWith("/hotel-chains/")
-  ) {
+  } else if (currentPath === "/hotel-chains") {
     return <HotelChainsPage />;
+  } else if (currentPath.startsWith("/hotel-chains/")) {
+    return <HotelPage />;
   } else if (currentPath.startsWith("/hotels/")) {
     return <HotelPage />;
   } else if (currentPath.startsWith("/rooms/")) {
     return <RoomPage />;
   } else if (currentPath.startsWith("/forms/")) {
     return <FormPage />;
+  } else if (currentPath === "/profile") {
+    return <Profile />;
+  } else if (currentPath === "/mybooking") {
+    return <MyBooking />;
   } else {
     // Handle other paths
     return <div>Page not found</div>;

@@ -1,19 +1,19 @@
-.hotel-chain-info {
+.hotel-chain-card {
+  display: inline-flex;
   flex-direction: column;
-  display: flex;
-  align-items: center;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-
+  flex: 1 0 300px;
+  margin: 10px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 4px 2 rgba(0, 0, 0, 0.1);
-  box-sizing: content-box;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
 .hotel-chain-image {
-  width: 200px;
-  height: auto;
-  border-radius: 15px 15px 15px 15px;
+  width: 100%;
+  max-height: 200px; /* Set max height for the image */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  border-radius: 16px 16px 0 0;
 }
 
 .hotel-chain-details {
@@ -27,18 +27,21 @@
   font-weight: bold;
 }
 
-.hotel-chain-email,
-.hotel-chain-numHotels,
-.hotel-chain-phonenumber-title {
+.hotel-chain-info {
   margin-bottom: 10px;
 }
 
-.hotel-chain-phonenumber-list {
+.phone-list {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .phone-list li {
   font-size: 14px;
   margin-bottom: 5px;
+}
+
+.hotel-chain-link {
+  color: black;
 }
