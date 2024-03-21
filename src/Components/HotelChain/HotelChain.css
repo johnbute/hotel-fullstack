@@ -1,0 +1,44 @@
+.hotel-chain-info {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+
+  overflow: hidden;
+  box-shadow: 0 2px 4px 2 rgba(0, 0, 0, 0.1);
+  box-sizing: content-box;
+}
+
+.hotel-chain-image {
+  width: 200px;
+  height: auto;
+  border-radius: 15px 15px 15px 15px;
+}
+
+.hotel-chain-details {
+  padding: 20px;
+}
+
+.hotel-chain-name {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.hotel-chain-email,
+.hotel-chain-numHotels,
+.hotel-chain-phonenumber-title {
+  margin-bottom: 10px;
+}
+
+.hotel-chain-phonenumber-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.phone-list li {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
