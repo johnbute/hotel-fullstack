@@ -1,0 +1,58 @@
+.upc {
+  width: -webkit-fill-available; /* Increase the width */
+  height: 400px; /* Increase the height */
+  border-radius: 4px;
+  padding-bottom: 20px;
+  background: white;
+  text-align: center; /* Center align the content */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gradient {
+  background-image: linear-gradient(#91baff, #205fff);
+  height: 125px;
+  border-radius: 4px 4px 0 0;
+}
+
+.profile-down {
+  margin-top: -75px; /* Adjust margin to vertically center the image */
+}
+
+.profile-down img {
+  height: 150px;
+  width: 150px; /* Adjust width to match height for a circular shape */
+  border-radius: 50%; /* Use 50% to create a circle */
+  border: 5px solid white; /* Add border to the image */
+}
+
+.profile-title {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.profile-description {
+  padding: 20px;
+  font-size: 16px;
+}
+
+.profile-section {
+  margin-top: 20px;
+}
+
+.profile-info {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.profile-info ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-info ul li {
+  margin-top: 5px;
+}
