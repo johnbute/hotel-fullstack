@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Layout, Button, theme } from "antd";
+import { Layout, Button, theme, ConfigProvider } from "antd";
 import "./App.css";
 import HotelChain from "./Components/HotelChain/HotelChain";
 import Login from "./Components/Login/Login";
@@ -54,7 +54,7 @@ function App() {
             <Route path="/hotel-chains/:chainId" element={<HotelPage />} />
 
             {/* Hotel Page */}
-            <Route path="/hotels/:hotelId" element={<HotelPage />} />
+            <Route path="/hotel/:hotelId" element={<RoomPage />} />
 
             {/* Room Page */}
             <Route path="/rooms/:roomId" element={<RoomPage />} />
@@ -79,30 +79,41 @@ export default App;
 
 function WithSidebar({ children, collapsed, setCollapsed, colorBgContainer }) {
   return (
-    <Layout>
-      <Sider
-        collapsed={collapsed}
-        collapsible
-        trigger={null}
-        className="Sidebar"
-      >
-        <div className="h-screen">
-          <Logo />
-          <Sidebar />
-        </div>
-      </Sider>
+    <ConfigProvider
+      theme={{
+        components: {
+          Sider: {},
+        },
+      }}
+    >
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          <Button
-            type="text"
-            className="toggle"
-            onClick={() => setCollapsed(!collapsed)}
-            icon={collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
-          />
-        </Header>
-        <div className="children">{children}</div>
+        <Sider
+          collapsed={collapsed}
+          collapsible
+          trigger={null}
+          className="Sidebar"
+          width={"400px"}
+          max-width={"400px"}
+          min-width={"400px"}
+        >
+          <div className="h-screen">
+            <Logo />
+            <Sidebar />
+          </div>
+        </Sider>
+        <Layout>
+          <Header style={{ padding: 0, background: colorBgContainer }}>
+            <Button
+              type="text"
+              className="toggle"
+              onClick={() => setCollapsed(!collapsed)}
+              icon={collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+            />
+          </Header>
+          <div className="children">{children}</div>
+        </Layout>
       </Layout>
-    </Layout>
+    </ConfigProvider>
   );
 }
 
@@ -116,8 +127,8 @@ function renderPage() {
     return <HotelChainsPage />;
   } else if (currentPath.startsWith("/hotel-chains/")) {
     return <HotelPage />;
-  } else if (currentPath.startsWith("/hotels/")) {
-    return <HotelPage />;
+  } else if (currentPath.startsWith("/hotel/")) {
+    return <RoomPage />;
   } else if (currentPath.startsWith("/rooms/")) {
     return <RoomPage />;
   } else if (currentPath.startsWith("/forms/")) {

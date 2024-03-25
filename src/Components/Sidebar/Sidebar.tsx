@@ -10,6 +10,7 @@ const Sidebar = () => {
   return (
     <Menu
       theme="dark"
+      style={{ textAlign: "center", fontSize: "25px" }}
       onClick={({ key }) => {
         navigate(key);
       }}
