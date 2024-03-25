@@ -1,6 +1,7 @@
 import React from "react";
 import Hotel from "./Hotel";
 import "./HotelPage.css";
+import image2 from "../Assets/hotelchain_images/exterior-view (2).jpg";
 
 function HotelPage() {
   const hotels = [
@@ -52,6 +53,7 @@ function HotelPage() {
   ];
   return (
     <>
+      <div className="Header">Hotel-chain name goes here</div>
       <div className="list-of-hotels">
         {hotels.map((hotel) => (
           <Hotel key={hotel.id} hotel={hotel} />
