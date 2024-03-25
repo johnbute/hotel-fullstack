@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Hotel from "./Hotel";
 import "./HotelPage.css";
 import image2 from "../Assets/hotelchain_images/exterior-view (2).jpg";
@@ -51,11 +51,47 @@ function HotelPage() {
       rating: 5,
     },
   ];
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [minRating, setMinRatng] = useState(0);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleRatingChange = (e) => {
+    setMinRatng(parseInt(e.target.value, 10));
+  };
+  const filteredHotels = hotels.filter((hotel) => {
+    return (
+      hotel.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      hotel.rating >= minRating
+    );
+  });
+
   return (
     <>
       <div className="Header">Hotel-chain name goes here</div>
+      <div className="SearchbarContainer">
+        <input
+          type="text"
+          placeholder="Search by hotel name..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="SearchBar"
+        />
+        <select onChange={handleRatingChange} className="Rating-SearchBar">
+          <option value="0">Minimum Rating</option>
+          <option value="1">⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+        </select>
+      </div>
+
       <div className="list-of-hotels">
-        {hotels.map((hotel) => (
+        {filteredHotels.map((hotel) => (
           <Hotel key={hotel.id} hotel={hotel} />
         ))}
       </div>

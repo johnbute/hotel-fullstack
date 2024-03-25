@@ -89,6 +89,7 @@ function HotelChainsPage() {
 
   return (
     <>
+      <div className="Header">Hotel-Chains</div>
       <div className="SearchbarContainer">
         <form onSubmit={handleSubmit}>
           <input
