@@ -1,0 +1,52 @@
+.room-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 300px;
+  margin: 10px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.room-card-image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+
+.room-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.room-number {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.price {
+  font-size: 30px;
+  color: green;
+  font-weight: bold;
+}
+
+.amenities-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.amenities-list li {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.room-link {
+  color: black;
+  text-decoration: none;
+}
