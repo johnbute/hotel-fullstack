@@ -68,7 +68,7 @@ function App() {
           <Route path="/confirmation" element={<ConfirmationPage />} />
 
           {/* Redirect to Home Page if route doesn't match */}
-          <Route path="*" element={<Navigate to="/home" />} />
+          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Container>
     </>

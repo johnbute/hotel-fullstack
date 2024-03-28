@@ -14,29 +14,28 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-
-.filter-icons {
+.filter-icons-bar .filter-icons {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 2rem;
-  border-bottom-width: 2px;
-  transition: border-color 0.3s;
+  gap: 20px;
+  padding: 20px;
+  transition: box-shadow 0.3s;
   cursor: pointer;
   font-size: 40px;
   color: #4a5568;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .filter-icons:hover {
-  color: #000000; /* Change to your hover color */
+  color: #000000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .active {
-  border-color: #000000;
-  /* Change to your selected border color */
-  color: #000000 !important; /* Change to your selected text color */
+  border: 2px solid black;
+  color: #000000 !important;
 }
 
 .filter-icons-bar {
@@ -44,6 +43,7 @@
   justify-content: center;
 }
 .price-slider {
+  padding: 20px;
   justify-content: center;
   width: 300px;
   font-size: 20px;

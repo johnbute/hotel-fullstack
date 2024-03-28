@@ -9,14 +9,13 @@ function RoomCard({ room }) {
   const categoryIcons = {
     TV: <FaTv />,
     AC: <FaWind />,
-    refrigerator: <FaSnowflake />, // You can use the same icon for multiple categories if needed
+    refrigerator: <FaSnowflake />,
     Jacuzzi: <FaHotTub />,
     Extendable: <FaBed />,
-    // Add more categories and corresponding icons as needed
   };
 
   return (
-    <Link to={`/hotel/${room.id}`} className="room-link">
+    <Link to={`/room/${room.id}`} className="room-link">
       <div className="room-card">
         <img src={image1} alt="room-image" className="room-card-image"></img>
         <div className="room-details">
