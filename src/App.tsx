@@ -15,7 +15,7 @@ import NewHotelChain from "./Components/HotelChain/HotelChainsPage";
 import HomePage from "./Components/Home/HomePage";
 import HotelChainsPage from "./Components/HotelChain/HotelChainsPage";
 import HotelPage from "./Components/Hotel/HotelPage";
-import RoomPage from "./Components/Room/RoomPage";
+import RoomPage from "./Components/Room-List/RoomPage";
 import FormPage from "./Components/Form/FormPage";
 import ConfirmationPage from "./Components/Confirmation/ConfirmationPage";
 import { useLocation } from "react-router-dom";
