@@ -130,7 +130,7 @@ function RoomPage() {
         <label htmlFor="minPriceRange">Min Price:</label>
         <Slider
           min={0}
-          max={2000}
+          max={500}
           value={priceRange[0]}
           onChange={(value) => handlePriceChange(value, 0)}
         />
@@ -138,7 +138,7 @@ function RoomPage() {
         <label htmlFor="maxPriceRange">Max Price:</label>
         <Slider
           min={0}
-          max={2000}
+          max={500}
           value={priceRange[1]}
           onChange={(value) => handlePriceChange(value, 1)}
         />
