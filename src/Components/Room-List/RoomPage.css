@@ -33,7 +33,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.active {
+.filter-icons.active {
   border: 2px solid black;
   color: #000000 !important;
 }

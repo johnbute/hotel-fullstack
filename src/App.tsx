@@ -21,7 +21,7 @@ import ConfirmationPage from "./Components/Confirmation/ConfirmationPage";
 import { useLocation } from "react-router-dom";
 import MyBooking from "./Components/Booking/MyBooking";
 import Profile from "./Components/Profile/Profile";
-
+import Room from "./Components/Room/Room";
 const { Header, Sider } = Layout;
 
 function App() {
@@ -34,7 +34,6 @@ function App() {
     <>
       <Container className="my-4">
         <Routes>
-          {/* Login Page */}
           <Route path="/login" element={<Login />} />
           <Route
             element={
@@ -46,28 +45,22 @@ function App() {
               />
             }
           >
-            {/* Home Page */}
             <Route path="/home" element={<HomePage />} />
 
-            {/* Hotel Chain Pages */}
             <Route path="/hotel-chains" element={<HotelChainsPage />} />
             <Route path="/hotel-chains/:chainId" element={<HotelPage />} />
 
-            {/* Hotel Page */}
             <Route path="/hotel/:hotelId" element={<RoomPage />} />
 
-            {/* Room Page */}
-            <Route path="/rooms/:roomId" element={<RoomPage />} />
+            <Route path="/room/:roomId" element={<Room />} />
             <Route path="/mybooking" element={<MyBooking />} />
             <Route path="/profile" element={<Profile />} />
-            {/* Form Page */}
+
             <Route path="/forms/:formType" element={<FormPage />} />
           </Route>
 
-          {/* Confirmation Page */}
           <Route path="/confirmation" element={<ConfirmationPage />} />
 
-          {/* Redirect to Home Page if route doesn't match */}
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Container>
@@ -129,8 +122,8 @@ function renderPage() {
     return <HotelPage />;
   } else if (currentPath.startsWith("/hotel/")) {
     return <RoomPage />;
-  } else if (currentPath.startsWith("/rooms/")) {
-    return <RoomPage />;
+  } else if (currentPath.startsWith("/room/")) {
+    return <Room />;
   } else if (currentPath.startsWith("/forms/")) {
     return <FormPage />;
   } else if (currentPath === "/profile") {
@@ -138,43 +131,6 @@ function renderPage() {
   } else if (currentPath === "/mybooking") {
     return <MyBooking />;
   } else {
-    // Handle other paths
     return <div>Page not found</div>;
   }
 }
-
-/*
-    const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-  return (
-    <>
-    <Routes>
-      <Layout>
-        <Sider
-          collapsed={collapsed}
-          collapsible
-          trigger = {null}
-          
-          className="Sidebar"
-        >
-          <Logo />
-          <Sidebar />
-          
-        </Sider>
-        <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }}>
-            <Button
-              type="text"
-              className="toggle"
-              onClick={() => setCollapsed(!collapsed)}
-              icon={collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
-            />
-          </Header>
-          <Page/>
-        </Layout>
-      </Layout>
-      </Routes>
-    </>
-  */

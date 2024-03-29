@@ -37,7 +37,7 @@ const Login = () => {
   }
 
   return (
-    <div className="container">
+    <div className="login-container">
       <div className="header">
         <label htmlFor="switch">
           <div className="login-categories">
