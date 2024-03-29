@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PaymentScreen.css";
 import { useNavigate } from "react-router";
 
@@ -48,8 +48,19 @@ function PaymentScreen({ onClose }) {
     return errors;
   };
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Delay the appearance of the payment screen for smoother transition
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="payment-screen">
+    <div className={`payment-screen ${isVisible ? "visible" : ""}`}>
       <div className="payment-modal">
         <h2>Payment Details</h2>
         <form className="payment-form" onSubmit={handleSubmit}>

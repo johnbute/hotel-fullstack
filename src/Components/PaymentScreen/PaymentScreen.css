@@ -17,6 +17,7 @@
 .payment-modal {
   background-color: white;
   padding: 20px;
+
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -32,10 +33,11 @@
 
 label {
   font-weight: bold;
+  padding: 20px;
 }
 
 input {
-  padding: 10px;
+  padding: 20px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
@@ -52,4 +54,9 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.payment-screen.visible {
+  opacity: 1;
+  backdrop-filter: blur(10px);
 }
