@@ -10,38 +10,49 @@
 }
 
 .list-of-rooms {
+  justify-content: center;
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  padding: 20px;
 }
-.filter-icons-bar .filter-icons {
+.filter-icons-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; /* Adjust as needed */
+  gap: 10px; /* Adjust the spacing between icons */
+  padding: 10px; /* Adjust the padding */
+}
+
+.filter-icons {
+  flex: 1; /* Take up all available space */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  transition: box-shadow 0.3s;
   cursor: pointer;
-  font-size: 40px;
   color: #4a5568;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .filter-icons:hover {
   color: #000000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1); /* Increase size on hover */
+}
+
+.filter-icons svg {
+  font-size: 30px; /* Adjust the icon size */
+}
+
+.filter-icons p {
+  margin-top: 5px; /* Adjust the space between icon and text */
+  font-size: 14px; /* Adjust the text size */
 }
 
 .filter-icons.active {
-  border: 2px solid black;
   color: #000000 !important;
 }
 
-.filter-icons-bar {
-  display: flex;
-  justify-content: center;
-}
 .price-slider {
   padding: 20px;
   justify-content: center;
@@ -57,4 +68,10 @@
   margin: 0;
   background-color: transparent;
   transform: translateY(2px);
+}
+.date-picker {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 10px;
 }

@@ -3,6 +3,9 @@ import RoomCard from "./RoomCard";
 import "./RoomPage.css";
 import { FaTv, FaWind, FaSnowflake, FaHotTub, FaBed } from "react-icons/fa";
 import { Slider } from "antd";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 const rooms = [
   {
     id: 1,
@@ -15,6 +18,7 @@ const rooms = [
     refrigerator: true,
     Jacuzzi: true,
     Extendable: true,
+    capacity: "Single",
   },
   {
     id: 2,
@@ -27,6 +31,7 @@ const rooms = [
     refrigerator: false,
     Jacuzzi: false,
     Extendable: false,
+    capacity: "Double",
   },
   {
     id: 3,
@@ -39,12 +44,15 @@ const rooms = [
     refrigerator: false,
     Jacuzzi: true,
     Extendable: true,
+    capacity: "Single",
   },
 ];
 
 function RoomPage() {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 500]); // Initial price range
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
 
   const handleFilterClick = (filter) => {
     setSelectedFilters((prevFilters) => {
@@ -65,10 +73,7 @@ function RoomPage() {
   };
 
   const filteredRooms = rooms.filter((room) => {
-    // Check if room matches all selected filters
     const filterMatches = selectedFilters.every((filter) => room[filter]);
-
-    // Check if room price is within selected price range
     const priceInRange =
       room.price >= priceRange[0] && room.price <= priceRange[1];
 
@@ -141,6 +146,29 @@ function RoomPage() {
           max={500}
           value={priceRange[1]}
           onChange={(value) => handlePriceChange(value, 1)}
+        />
+      </div>
+
+      <div className="date-picker">
+        <DatePicker
+          selected={checkInDate}
+          onChange={(date) => setCheckInDate(date)}
+          selectsStart
+          startDate={checkInDate}
+          endDate={checkOutDate}
+          placeholderText="Check-in Date"
+          className="date-picker-input"
+          minDate={new Date()}
+        />
+        <DatePicker
+          selected={checkOutDate}
+          onChange={(date) => setCheckOutDate(date)}
+          selectsEnd
+          startDate={checkInDate}
+          endDate={checkOutDate}
+          minDate={checkInDate}
+          placeholderText="Check-out Date"
+          className="date-picker-input"
         />
       </div>
 

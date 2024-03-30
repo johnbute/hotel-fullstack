@@ -5,9 +5,10 @@ import "./RoomCard.css";
 import PaymentScreen from "../PaymentScreen/PaymentScreen"; // Import PaymentScreen component
 import image1 from "../Assets/turkish-hotel.jpg";
 import { FaTv, FaWind, FaSnowflake, FaHotTub, FaBed } from "react-icons/fa";
+import BookNow from "../BookNow/BookNow";
 
 function RoomCard({ room }) {
-  const [showPaymentScreen, setShowPaymentScreen] = useState(false); // State to control visibility of payment screen
+  const [showBookingScreen, setShowBookingScreen] = useState(false); // State to control visibility of payment screen
 
   const categoryIcons = {
     TV: <FaTv />,
@@ -18,7 +19,7 @@ function RoomCard({ room }) {
   };
 
   const handleBookNow = () => {
-    setShowPaymentScreen(true); // Show payment screen when "Book Now" is clicked
+    setShowBookingScreen(true); // Show payment screen when "Book Now" is clicked
   };
 
   return (
@@ -28,7 +29,7 @@ function RoomCard({ room }) {
         <img src={image1} alt="room-image" className="room-card-image"></img>
         <div className="room-details">
           <h2 className="room-number">
-            {room.view_type} view Room {room.room_number}
+            {room.capacity} {room.view_type} view Room {room.room_number}
           </h2>
           <ul className="amenities-list">
             {Object.entries(room).map(([key, value]) => {
@@ -48,10 +49,9 @@ function RoomCard({ room }) {
           </button>
         </div>
       </div>
-      {showPaymentScreen && (
-        <PaymentScreen onClose={() => setShowPaymentScreen(false)} />
+      {showBookingScreen && (
+        <BookNow onClose={() => setShowBookingScreen(false)} />
       )}{" "}
-      {/* Render PaymentScreen if showPaymentScreen is true */}
     </>
   );
 }
