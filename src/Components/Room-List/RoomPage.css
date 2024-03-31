@@ -19,13 +19,13 @@
 .filter-icons-bar {
   display: flex;
   align-items: center;
-  justify-content: space-evenly; /* Adjust as needed */
-  gap: 10px; /* Adjust the spacing between icons */
-  padding: 10px; /* Adjust the padding */
+  justify-content: space-evenly;
+  gap: 10px;
+  padding: 10px;
 }
 
 .filter-icons {
-  flex: 1; /* Take up all available space */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,16 +37,16 @@
 
 .filter-icons:hover {
   color: #000000;
-  transform: scale(1.1); /* Increase size on hover */
+  transform: scale(1.1);
 }
 
 .filter-icons svg {
-  font-size: 30px; /* Adjust the icon size */
+  font-size: 40px;
 }
 
 .filter-icons p {
-  margin-top: 5px; /* Adjust the space between icon and text */
-  font-size: 14px; /* Adjust the text size */
+  margin-top: 5px;
+  font-size: 20px;
 }
 
 .filter-icons.active {
@@ -74,4 +74,60 @@
   align-items: center;
   display: flex;
   padding: 10px;
+}
+
+.button-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.add-button {
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 36px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
+}
+
+.add-button:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.add-button span {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.add-button::before,
+.add-button::after {
+  content: "";
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.add-button::before {
+  width: 10px;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.add-button::after {
+  width: 2px;
+  height: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

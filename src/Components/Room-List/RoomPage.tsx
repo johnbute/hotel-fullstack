@@ -5,6 +5,7 @@ import { FaTv, FaWind, FaSnowflake, FaHotTub, FaBed } from "react-icons/fa";
 import { Slider } from "antd";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useIsEmployee } from "../../Context/IsEmployeeContext";
 
 const rooms = [
   {
@@ -50,23 +51,22 @@ const rooms = [
 
 function RoomPage() {
   const [selectedFilters, setSelectedFilters] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 500]); // Initial price range
+  const [priceRange, setPriceRange] = useState([0, 500]);
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
 
-  const handleFilterClick = (filter) => {
+  const { isEmployee } = useIsEmployee();
+  const handleFilterClick = (filter: string) => {
     setSelectedFilters((prevFilters) => {
       if (prevFilters.includes(filter)) {
-        // If the filter is already selected, remove it
         return prevFilters.filter((prevFilter) => prevFilter !== filter);
       } else {
-        // If the filter is not selected, add it
         return [...prevFilters, filter];
       }
     });
   };
 
-  const handlePriceChange = (value, index) => {
+  const handlePriceChange = (value: number, index: number) => {
     const newPriceRange = [...priceRange];
     newPriceRange[index] = value;
     setPriceRange(newPriceRange);
@@ -177,6 +177,13 @@ function RoomPage() {
           <RoomCard key={room.id} room={room} />
         ))}
       </div>
+      {isEmployee && (
+        <div className="button-container">
+          <button className="add-button">
+            <span>+</span>
+          </button>
+        </div>
+      )}
     </>
   );
 }

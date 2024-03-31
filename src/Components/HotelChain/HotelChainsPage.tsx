@@ -5,6 +5,7 @@ import image2 from "../Assets/hotelchain_images/exterior-view (2).jpg";
 import "./HotelChainsPage.css";
 import image3 from "../Assets/hotelchain_images/exterior-view.jpg";
 import image4 from "../Assets/hotelchain_images/luxury-tent-views.jpg";
+import { useIsEmployee } from "../../Context/IsEmployeeContext";
 
 function HotelChainsPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -82,10 +83,11 @@ function HotelChainsPage() {
     setProcessedQuery(""); // Clear the processed query
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault(); // Prevent default form submission behavior
     handleSearch(); // Process the search query
   };
+  const { isEmployee } = useIsEmployee();
 
   return (
     <>
@@ -112,6 +114,13 @@ function HotelChainsPage() {
           <HotelChain key={hotelChain.id} hotelChain={hotelChain} />
         ))}
       </div>
+      {isEmployee && (
+        <div className="button-container">
+          <button className="add-button">
+            <span>+</span>
+          </button>
+        </div>
+      )}
     </>
   );
 }

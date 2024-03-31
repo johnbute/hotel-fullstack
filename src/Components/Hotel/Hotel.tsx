@@ -9,7 +9,7 @@ import { FaTrash } from "react-icons/fa";
 function Hotel({ hotel }) {
   const [rating, setRating] = useState(hotel.rating);
   const navigate = useNavigate();
-  const isEmployee = useIsEmployee();
+  const { isEmployee } = useIsEmployee();
 
   const handleDelete = () => {
     console.log("delete hotel", hotel);

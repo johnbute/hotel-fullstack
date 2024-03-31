@@ -12,7 +12,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Route, Routes, Navigate } from "react-router";
 import { Container } from "react-bootstrap";
 import NewHotelChain from "./Components/HotelChain/HotelChainsPage";
-import HomePage from "./Components/Home/HomePage";
+
 import HotelChainsPage from "./Components/HotelChain/HotelChainsPage";
 import HotelPage from "./Components/Hotel/HotelPage";
 import RoomPage from "./Components/Room-List/RoomPage";
@@ -46,8 +46,6 @@ function App() {
                 />
               }
             >
-              <Route path="/home" element={<HomePage />} />
-
               <Route path="/hotel-chains" element={<HotelChainsPage />} />
               <Route path="/hotel-chains/:chainId" element={<HotelPage />} />
 
@@ -115,15 +113,13 @@ function renderPage() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  if (currentPath === "/home") {
-    return <HomePage />;
-  } else if (currentPath === "/hotel-chains") {
+  if (currentPath === "/hotel-chains") {
     return <HotelChainsPage />;
   } else if (currentPath.startsWith("/hotel-chains/")) {
     return <HotelPage />;
   } else if (currentPath.startsWith("/hotel/")) {
     return <RoomPage />;
-  }  else if (currentPath.startsWith("/forms/")) {
+  } else if (currentPath.startsWith("/forms/")) {
     return <FormPage />;
   } else if (currentPath === "/profile") {
     return <Profile />;

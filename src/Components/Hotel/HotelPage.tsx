@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Hotel from "./Hotel";
 import "./HotelPage.css";
 import image2 from "../Assets/hotelchain_images/exterior-view (2).jpg";
+import { useIsEmployee } from "../../Context/IsEmployeeContext";
 
 function HotelPage() {
   const hotels = [
@@ -55,11 +56,13 @@ function HotelPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [minRating, setMinRatng] = useState(0);
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleRatingChange = (e) => {
+  const handleRatingChange = (e: { target: { value: string } }) => {
     setMinRatng(parseInt(e.target.value, 10));
   };
   const filteredHotels = hotels.filter((hotel) => {
@@ -68,6 +71,7 @@ function HotelPage() {
       hotel.rating >= minRating
     );
   });
+  const { isEmployee } = useIsEmployee();
 
   return (
     <>
@@ -95,6 +99,13 @@ function HotelPage() {
           <Hotel key={hotel.id} hotel={hotel} />
         ))}
       </div>
+      {isEmployee && (
+        <div className="button-container">
+          <button className="add-button">
+            <span>+</span>
+          </button>
+        </div>
+      )}
     </>
   );
 }
