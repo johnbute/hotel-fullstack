@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom"; // Import Link
 import { Rating } from "react-simple-star-rating";
 import "./RoomCard.css";
 import PaymentScreen from "../PaymentScreen/PaymentScreen"; // Import PaymentScreen component
 import image1 from "../Assets/turkish-hotel.jpg";
-import { FaTv, FaWind, FaSnowflake, FaHotTub, FaBed } from "react-icons/fa";
+
+import {
+  FaTv,
+  FaWind,
+  FaSnowflake,
+  FaHotTub,
+  FaBed,
+  FaTrash,
+} from "react-icons/fa";
 import BookNow from "../BookNow/BookNow";
+import { useIsEmployee } from "../../Context/IsEmployeeContext";
 
 function RoomCard({ room }) {
   const [showBookingScreen, setShowBookingScreen] = useState(false); // State to control visibility of payment screen
-
+  const { isEmployee } = useIsEmployee();
   const categoryIcons = {
     TV: <FaTv />,
     AC: <FaWind />,
@@ -22,9 +31,20 @@ function RoomCard({ room }) {
     setShowBookingScreen(true); // Show payment screen when "Book Now" is clicked
   };
 
+  const handleDelete = () => {
+    // Implement deletion logic here
+    console.log("Deleting room:", room);
+  };
+
   return (
     <>
       <div className="room-card">
+        {isEmployee && (
+          <div className="delete-room" onClick={handleDelete}>
+            <FaTrash onClick={handleDelete} />
+          </div>
+        )}
+
         <div className="price">{room.price}$</div>
         <img src={image1} alt="room-image" className="room-card-image"></img>
         <div className="room-details">

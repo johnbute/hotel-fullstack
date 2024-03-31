@@ -21,7 +21,7 @@ import ConfirmationPage from "./Components/Confirmation/ConfirmationPage";
 import { useLocation } from "react-router-dom";
 import MyBooking from "./Components/Booking/MyBooking";
 import Profile from "./Components/Profile/Profile";
-import Room from "./Components/Room/Room";
+import { IsEmployeeProvider } from "./Context/IsEmployeeContext";
 const { Header, Sider } = Layout;
 
 function App() {
@@ -32,38 +32,39 @@ function App() {
 
   return (
     <>
-      <Container className="my-4">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route
-            element={
-              <WithSidebar
-                children={renderPage()}
-                collapsed={collapsed}
-                setCollapsed={setCollapsed}
-                colorBgContainer={colorBgContainer}
-              />
-            }
-          >
-            <Route path="/home" element={<HomePage />} />
+      <IsEmployeeProvider>
+        <Container className="my-4">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route
+              element={
+                <WithSidebar
+                  children={renderPage()}
+                  collapsed={collapsed}
+                  setCollapsed={setCollapsed}
+                  colorBgContainer={colorBgContainer}
+                />
+              }
+            >
+              <Route path="/home" element={<HomePage />} />
 
-            <Route path="/hotel-chains" element={<HotelChainsPage />} />
-            <Route path="/hotel-chains/:chainId" element={<HotelPage />} />
+              <Route path="/hotel-chains" element={<HotelChainsPage />} />
+              <Route path="/hotel-chains/:chainId" element={<HotelPage />} />
 
-            <Route path="/hotel/:hotelId" element={<RoomPage />} />
+              <Route path="/hotel/:hotelId" element={<RoomPage />} />
 
-            <Route path="/room/:roomId" element={<Room />} />
-            <Route path="/mybooking" element={<MyBooking />} />
-            <Route path="/profile" element={<Profile />} />
+              <Route path="/mybooking" element={<MyBooking />} />
+              <Route path="/profile" element={<Profile />} />
 
-            <Route path="/forms/:formType" element={<FormPage />} />
-          </Route>
+              <Route path="/forms/:formType" element={<FormPage />} />
+            </Route>
 
-          <Route path="/confirmation" element={<ConfirmationPage />} />
+            <Route path="/confirmation" element={<ConfirmationPage />} />
 
-          <Route path="*" element={<Navigate to="/login" />} />
-        </Routes>
-      </Container>
+            <Route path="*" element={<Navigate to="/login" />} />
+          </Routes>
+        </Container>
+      </IsEmployeeProvider>
     </>
   );
 }
@@ -122,9 +123,7 @@ function renderPage() {
     return <HotelPage />;
   } else if (currentPath.startsWith("/hotel/")) {
     return <RoomPage />;
-  } else if (currentPath.startsWith("/room/")) {
-    return <Room />;
-  } else if (currentPath.startsWith("/forms/")) {
+  }  else if (currentPath.startsWith("/forms/")) {
     return <FormPage />;
   } else if (currentPath === "/profile") {
     return <Profile />;

@@ -3,7 +3,7 @@ import "./Login.css";
 import image1 from "../Assets/login_images/person.png";
 import HotelChain from "../HotelChain/HotelChain"; // Import HotelChain component
 import { useNavigate } from "react-router-dom";
-
+import { useIsEmployee } from "../../Context/IsEmployeeContext";
 const Login = () => {
   const [loginType, setLoginType] = useState("employee"); // State to manage login type (employee/customer)
   const [employeeID, setEmployeeID] = useState(""); // State to manage employee ID input
@@ -12,11 +12,13 @@ const Login = () => {
   const [customerPassword, setCustomerPassword] = useState(""); // State to manage customer password input
   const [loggedIn, setLoggedIn] = useState(false); // State to manage login status
   const navigate = useNavigate();
+  const { setIsEmployee } = useIsEmployee();
 
   const handleEmployeeLogin = () => {
     // Check if employeeID is not empty and employeeSSN is valid (e.g., "12345")
     if (employeeID.trim() !== "" && employeeSSN === "12345") {
-      setLoggedIn(true); // Set loggedIn to true
+      setLoggedIn(true);
+      setIsEmployee(true); // Set isEmployee context to true
     } else {
       alert("Invalid employee ID or SSN. Please try again."); // Show an alert for invalid input
     }
