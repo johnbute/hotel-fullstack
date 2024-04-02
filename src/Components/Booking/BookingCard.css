@@ -58,25 +58,9 @@
   background-color: #0056b3;
 }
 
-input[type="text"] {
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  size: 50px;
-}
-
 .react-datepicker-wrapper,
 .react-datepicker__input-container {
   display: block;
-}
-input[type="text"] {
-  padding: 15px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 18px;
-  height: 50px;
 }
 
 .search-field {
