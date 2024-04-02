@@ -6,11 +6,16 @@ import "./HotelChainsPage.css";
 import image3 from "../Assets/hotelchain_images/exterior-view.jpg";
 import image4 from "../Assets/hotelchain_images/luxury-tent-views.jpg";
 import { useIsEmployee } from "../../Context/IsEmployeeContext";
+import CreateHotelChain from "../Form/CreateHotelChain";
 
 function HotelChainsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [processedQuery, setProcessedQuery] = useState("");
-
+  const [isCreateScreenVisible, setCreateScreenVisible] = useState(false);
+  const handleAddButtonClick = () => {
+    console.log("Add button clicked");
+    setCreateScreenVisible(true);
+  };
   const hotelChains = [
     {
       id: 1,
@@ -116,10 +121,13 @@ function HotelChainsPage() {
       </div>
       {isEmployee && (
         <div className="button-container">
-          <button className="add-button">
+          <button className="add-button" onClick={handleAddButtonClick}>
             <span>+</span>
           </button>
         </div>
+      )}
+      {isCreateScreenVisible && (
+        <CreateHotelChain onClose={() => setCreateScreenVisible(false)} />
       )}
     </>
   );

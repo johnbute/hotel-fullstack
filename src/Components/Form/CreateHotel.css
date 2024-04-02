@@ -1,0 +1,48 @@
+.pill-input-container {
+  border: 1px solid #ccc;
+  padding: 5px;
+  min-height: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.pill-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  flex-grow: 1;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin-right: 5px; /* Space between pills */
+}
+
+.pill span {
+  margin-right: 5px; /* Space between the text and the 'X' button */
+}
+
+.pill-close-btn {
+  background-color: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 8px; /* Adds some space between the pill text and the 'X' */
+}
+
+.editable-area {
+  border: none;
+  outline: none;
+  min-width: 100px; /* Minimum width to ensure there's always an editable area */
+  flex-grow: 1;
+}

@@ -8,17 +8,19 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   position: relative;
+  justify-content: center;
+  align-items: center;
 }
 
 .hotel-chain-image {
   width: 100%;
-  max-height: 200px; /* Set max height for the image */
-  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  max-height: 200px;
+  object-fit: cover;
   border-radius: 16px 16px 0 0;
 }
 
 .hotel-chain-details {
-  padding: 20px;
+  padding: 15px;
 }
 
 .hotel-chain-name {
@@ -57,4 +59,26 @@
   border-radius: 5px;
   font-size: 18px;
   cursor: pointer;
+}
+
+.explore-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 15px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+  width: 100px;
+  height: 50px;
+}
+
+.explore-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
 }

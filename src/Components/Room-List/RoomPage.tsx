@@ -6,6 +6,7 @@ import { Slider } from "antd";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useIsEmployee } from "../../Context/IsEmployeeContext";
+import CreateRoom from "../Form/CreateRoom";
 
 const rooms = [
   {
@@ -54,6 +55,11 @@ function RoomPage() {
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
+  const [isCreateScreenVisible, setCreateScreenVisible] = useState(false);
+
+  const handleAddButtonClick = () => {
+    setCreateScreenVisible(true);
+  };
 
   const { isEmployee } = useIsEmployee();
   const handleFilterClick = (filter: string) => {
@@ -179,9 +185,14 @@ function RoomPage() {
       </div>
       {isEmployee && (
         <div className="button-container">
-          <button className="add-button">
+          <button className="add-button" onClick={handleAddButtonClick}>
             <span>+</span>
           </button>
+        </div>
+      )}
+      {isCreateScreenVisible && (
+        <div className="create">
+          <CreateRoom onClose={() => setCreateScreenVisible(false)} />
         </div>
       )}
     </>

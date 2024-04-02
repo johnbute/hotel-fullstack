@@ -86,10 +86,10 @@
   border: none;
   background-color: #4caf50;
   color: white;
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  font-size: 36px;
+  font-size: 50px;
   cursor: pointer;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

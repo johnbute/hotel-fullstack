@@ -16,7 +16,6 @@ import NewHotelChain from "./Components/HotelChain/HotelChainsPage";
 import HotelChainsPage from "./Components/HotelChain/HotelChainsPage";
 import HotelPage from "./Components/Hotel/HotelPage";
 import RoomPage from "./Components/Room-List/RoomPage";
-import FormPage from "./Components/Form/FormPage";
 import ConfirmationPage from "./Components/Confirmation/ConfirmationPage";
 import { useLocation } from "react-router-dom";
 import MyBooking from "./Components/Booking/MyBooking";
@@ -53,8 +52,6 @@ function App() {
 
               <Route path="/mybooking" element={<MyBooking />} />
               <Route path="/profile" element={<Profile />} />
-
-              <Route path="/forms/:formType" element={<FormPage />} />
             </Route>
 
             <Route path="/confirmation" element={<ConfirmationPage />} />
@@ -119,8 +116,6 @@ function renderPage() {
     return <HotelPage />;
   } else if (currentPath.startsWith("/hotel/")) {
     return <RoomPage />;
-  } else if (currentPath.startsWith("/forms/")) {
-    return <FormPage />;
   } else if (currentPath === "/profile") {
     return <Profile />;
   } else if (currentPath === "/mybooking") {

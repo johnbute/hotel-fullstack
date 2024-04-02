@@ -3,8 +3,15 @@ import Hotel from "./Hotel";
 import "./HotelPage.css";
 import image2 from "../Assets/hotelchain_images/exterior-view (2).jpg";
 import { useIsEmployee } from "../../Context/IsEmployeeContext";
+import CreateHotel from "../Form/CreateHotel";
 
 function HotelPage() {
+  const [isCreateScreenVisible, setCreateScreenVisible] = useState(false);
+  const handleAddButtonClick = () => {
+    console.log("Add button clicked");
+    setCreateScreenVisible(true);
+  };
+
   const hotels = [
     {
       id: 1,
@@ -101,10 +108,14 @@ function HotelPage() {
       </div>
       {isEmployee && (
         <div className="button-container">
-          <button className="add-button">
+          <button className="add-button" onClick={handleAddButtonClick}>
             <span>+</span>
           </button>
         </div>
+      )}
+
+      {isCreateScreenVisible && (
+        <CreateHotel onClose={() => setCreateScreenVisible(false)} />
       )}
     </>
   );
