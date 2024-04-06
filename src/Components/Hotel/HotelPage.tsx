@@ -43,9 +43,13 @@ function HotelPage() {
   
   const { isEmployee } = useIsEmployee();
 
+     // get the selected hotel chain name and display it in the header
+  const hotelChainName = localStorage.getItem('hotelChainName');
+
   return (
     <>
-      <div className="Header">Hotel-chain name goes here</div>
+
+      <div className="Header">{hotelChainName}</div>
       <div className="SearchbarContainer">
         <input
           type="text"

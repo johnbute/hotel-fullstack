@@ -11,11 +11,12 @@ import CreateHotelChain from "../Form/CreateHotelChain";
 function HotelChainsPage() {
   const [hotelChains, setHotelChains] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [processedQuery, setProcessedQuery] = useState(""); 
   const [isCreateScreenVisible, setCreateScreenVisible] = useState(false);
 
   useEffect(() => {
     const fetchHotelChains = async () => {
-      const response = await fetch('http://localhost:3001/login/customer'); // Adjust the URL as necessary
+      const response = await fetch('http://localhost:3001/api/hotel-chains'); // Adjust the URL as necessary
       const data = await response.json();
       setHotelChains(data);
     };

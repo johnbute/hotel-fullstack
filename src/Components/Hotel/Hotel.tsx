@@ -33,17 +33,13 @@ function Hotel({ hotel }) {
         <div className="hotel-chain-info">
           <p className="hotel-chain-phonenumber-title">Phone Numbers:</p>
           <ul className="phone-list">
-            {hotel.phoneNumbers.map((phoneNumber, index) => (
-              <li key={index}>{phoneNumber}</li>
-            ))}
+           
           </ul>
         </div>
         <div className="hotel-chain-info">
           <p className="hotel-chain-phonenumber-title">Emails:</p>
           <ul className="phone-list">
-            {hotel.email.map((email, index) => (
-              <li key={index}>{email}</li>
-            ))}
+            
           </ul>
         </div>
         <button

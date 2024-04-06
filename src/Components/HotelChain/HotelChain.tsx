@@ -36,10 +36,8 @@ function HotelChain({ hotelChain }) {
           <div className="hotel-chain-info">
             <p className="hotel-chain-phonenumber-title">Phone Numbers:</p>
             <ul className="phone-list">
-              {hotelChain.phoneNumbers.map((phoneNumber, index) => (
-                <li key={index}>{phoneNumber}</li>
-              ))}
-            </ul>
+      
+                        </ul>
           </div>
         </div>
         <button

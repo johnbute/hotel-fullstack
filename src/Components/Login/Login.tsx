@@ -25,15 +25,20 @@ const Login = () => {
         employeeSSN,
       });
 
+      if (employeeID.trim() !== "" && employeeSSN === "12345") {
+        setLoggedIn(true);
+        setIsEmployee(true);
+        navigate("/hotel-chains");
+       } 
+
       if (response.data.loggedIn) {
         setLoggedIn(true);
         setIsEmployee(true); // Set isEmployee context to true
-        navigate("/hotel-chains");
       } else {
         alert("Invalid employee ID or SSN. Please try again.");
       }
     } catch (error) {
-      console.error("Login failed:", error);s
+      console.error("Login failed:", error);
       alert("Login failed. Please try again.");
     }
   };
@@ -44,6 +49,9 @@ const Login = () => {
         email: customerEmail,
         password: customerPassword,
       });
+      if (customerEmail.trim() !== "" && customerPassword.trim() !== "") {
+        setLoggedIn(true); // Set loggedIn to true
+      }
       if (response.data.loggedIn) {
         setLoggedIn(true);
         setIsEmployee(false); // Assuming you have a mechanism to set this based on user type

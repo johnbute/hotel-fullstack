@@ -1,14 +1,18 @@
 const express = require('express');
 const app = express();
-const port = 3001; // Ensure this is a different port from your React app
+const port = 3001; 
 const cors = require('cors');
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+}));
 
 app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Express server is running');
+  console.log('Express server is running');
 });
 
 const pool = require('./db');
@@ -29,7 +33,7 @@ app.post('/login/employee', async (req, res) => {
     const { employeeID, employeeSSN } = req.body;
 
     // Directly concatenating user input into an SQL query
-    const queryString = `SELECT * FROM employees WHERE employee_id = '${employeeID}' AND ssn = '${employeeSSN}'`;
+    const queryString = `SELECT * FROM public."Employee" WHERE employee_id = '${employeeID}' AND "SSN" = '${employeeSSN}'`;
 
     try {
         const result = await pool.query(queryString);
@@ -59,7 +63,7 @@ app.post('/login/employee', async (req, res) => {
 
   app.get('/api/rooms', async (req, res) => {
     try {
-      const { rows } = await pool.query('SELECT * FROM Rooms WHERE status = $1', ['Available']);
+      const { rows } = await pool.query('SELECT * FROM public."Roomm"');
       res.json(rows);
     } catch (error) {
       console.error(error);
@@ -72,7 +76,7 @@ app.post('/login/employee', async (req, res) => {
     const { start_date, checked_in, end_date, status, reservation_id } = req.body;
   
     try {
-      const result = await pool.query('INSERT INTO Booking (start_date, checked_in, end_date, status, reservation_id) VALUES ($1, $2, $3, $4, $5) RETURNING *', [start_date, checked_in, end_date, status, reservation_id]);
+      const result = await pool.query('INSERT INTO public."Booking" (start_date, checked_in, end_date, status, reservation_id) VALUES ($1, $2, $3, $4, $5) RETURNING *', [start_date, checked_in, end_date, status, reservation_id]);
       res.json(result.rows[0]);
     } catch (error) {
       console.error('Error booking room:', error);
@@ -93,7 +97,7 @@ app.post('/login/employee', async (req, res) => {
 // Function to get hotel chains from the database
 const getHotelChainsFromDatabase = async () => {
     try {
-        const result = await pool.query('SELECT * FROM hotel_chains'); // Adjust the table name as necessary
+        const result = await pool.query('SELECT * FROM public."Hotel_Chain"'); // Adjust the table name as necessary
         return result.rows;
     } catch (error) {
         console.error("Failed to fetch hotel chains:", error);
@@ -108,7 +112,7 @@ module.exports = {
 // Fetch all hotels
 app.get('/api/hotels', async (req, res) => {
     try {
-      const result = await pool.query('SELECT * FROM hotels');
+      const result = await pool.query('SELECT * FROM public."Hotel"');
       res.json(result.rows);
     } catch (error) {
       console.error(error.message);
@@ -121,7 +125,7 @@ app.get('/api/hotels', async (req, res) => {
     const { name, emails, phone_numbers, address, rating } = req.body;
     try {
       const newHotel = await pool.query(
-        'INSERT INTO hotels (name, emails, phone_numbers, address, rating) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        'INSERT INTO public."Hotel" (name, emails, phone_numbers, address, rating) VALUES ($1, $2, $3, $4, $5) RETURNING *',
         [name, emails, phone_numbers, address, rating]
       );
       res.json(newHotel.rows[0]);

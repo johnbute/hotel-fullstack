@@ -77,7 +77,7 @@ function RoomPage() {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await axios.get(`'http://localhost:3001/rooms`);
+        const response = await axios.get('http://localhost:3001/rooms');
         setRooms(response.data); // Update state with fetched rooms
       } catch (error) {
         console.error('Failed to fetch rooms:', error);
@@ -87,6 +87,7 @@ function RoomPage() {
 
     fetchRooms();
   }, []);
+
 
   const handlePriceChange = (value: number, index: number) => {
     const newPriceRange = [...priceRange];
