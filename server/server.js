@@ -63,7 +63,7 @@ app.post('/login/employee', async (req, res) => {
 
   app.get('/api/rooms', async (req, res) => {
     try {
-      const { rows } = await pool.query('SELECT * FROM public."Roomm"');
+      const { rows } = await pool.query('SELECT * FROM public."Room"');
       res.json(rows);
     } catch (error) {
       console.error(error);
