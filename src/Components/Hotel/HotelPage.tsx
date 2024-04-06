@@ -1,64 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Hotel from "./Hotel";
 import "./HotelPage.css";
 import image2 from "../Assets/hotelchain_images/exterior-view (2).jpg";
 import { useIsEmployee } from "../../Context/IsEmployeeContext";
 import CreateHotel from "../Form/CreateHotel";
+import axios from 'axios';
 
 function HotelPage() {
   const [isCreateScreenVisible, setCreateScreenVisible] = useState(false);
   const handleAddButtonClick = () => {
     console.log("Add button clicked");
     setCreateScreenVisible(true);
-  };
-
-  const hotels = [
-    {
-      id: 1,
-      hotel_chain_id: 1,
-      email: ["test@gmail.com", "yahoo@gmail.com"],
-      phoneNumbers: ["123-456-7890", "987-654-3210"],
-      address: "50 Ottawa Avenue",
-      name: "The cuba booz expreess",
-      rating: 4,
-    },
-    {
-      id: 2,
-      hotel_chain_id: 1,
-      email: ["test@gmail.com", "yahoo@gmail.com"],
-      phoneNumbers: ["123-456-7890", "987-654-3210"],
-      address: "50 Ottawa Avenue",
-      name: "The Dominican booz expreess",
-      rating: 3,
-    },
-    {
-      id: 3,
-      hotel_chain_id: 1,
-      email: ["test@gmail.com", "yahoo@gmail.com"],
-      phoneNumbers: ["123-456-7890", "987-654-3210"],
-      address: "50 Ottawa Avenue",
-      name: "The bunda booz expreess",
-      rating: 1,
-    },
-    {
-      id: 4,
-      hotel_chain_id: 3,
-      email: ["test@gmail.com", "yahoo@gmail.com"],
-      phoneNumbers: ["123-456-7890", "987-654-3210"],
-      address: "50 Ottawa Avenue",
-      name: "The huhhh expreess",
-      rating: 4,
-    },
-    {
-      id: 5,
-      hotel_chain_id: 3,
-      email: ["test@gmail.com", "yahoo@gmail.com"],
-      phoneNumbers: ["123-456-7890", "987-654-3210"],
-      address: "50 Ottawa Avenue",
-      name: "The expreess",
-      rating: 5,
-    },
-  ];
+  }
+  const [hotels, setHotels] = useState([]);
+  
+  useEffect(() => {
+    const fetchHotels = async () => {
+      const response = await axios.get('http://localhost:3001/api/hotels');
+      setHotels(response.data);
+    };
+    fetchHotels();
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [minRating, setMinRatng] = useState(0);
@@ -78,6 +40,7 @@ function HotelPage() {
       hotel.rating >= minRating
     );
   });
+  
   const { isEmployee } = useIsEmployee();
 
   return (

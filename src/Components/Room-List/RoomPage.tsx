@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RoomCard from "./RoomCard";
 import "./RoomPage.css";
 import { FaTv, FaWind, FaSnowflake, FaHotTub, FaBed } from "react-icons/fa";
@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useIsEmployee } from "../../Context/IsEmployeeContext";
 import CreateRoom from "../Form/CreateRoom";
+import axios from 'axios';
 
 const rooms = [
   {
@@ -52,6 +53,7 @@ const rooms = [
 
 function RoomPage() {
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [rooms, setRooms] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
@@ -71,6 +73,20 @@ function RoomPage() {
       }
     });
   };
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const response = await axios.get(`'http://localhost:3001/rooms`);
+        setRooms(response.data); // Update state with fetched rooms
+      } catch (error) {
+        console.error('Failed to fetch rooms:', error);
+        // Consider setting state to show an error message here
+      }
+    };
+
+    fetchRooms();
+  }, []);
 
   const handlePriceChange = (value: number, index: number) => {
     const newPriceRange = [...priceRange];

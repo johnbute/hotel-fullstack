@@ -18,7 +18,7 @@ const Profile = () => {
         <div className="profile-down">
           <img src={profile_icon} alt="" />
           <div className="profile-title">Yi Long Ma</div>
-          <div className="profile-description">I am a huge fucking penis</div>
+          <div className="profile-description">I am a huge </div>
           <div className="profile-section">
             <div className="profile-info">SSN: 123-45-6789</div>
             <div className="profile-info">Role/Position: Software Engineer</div>

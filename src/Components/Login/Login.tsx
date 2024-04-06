@@ -4,6 +4,9 @@ import image1 from "../Assets/login_images/person.png";
 import HotelChain from "../HotelChain/HotelChain"; // Import HotelChain component
 import { useNavigate } from "react-router-dom";
 import { useIsEmployee } from "../../Context/IsEmployeeContext";
+
+import axios from 'axios';
+
 const Login = () => {
   const [loginType, setLoginType] = useState("employee"); // State to manage login type (employee/customer)
   const [employeeID, setEmployeeID] = useState(""); // State to manage employee ID input
@@ -14,22 +17,42 @@ const Login = () => {
   const navigate = useNavigate();
   const { setIsEmployee } = useIsEmployee();
 
-  const handleEmployeeLogin = () => {
-    // Check if employeeID is not empty and employeeSSN is valid (e.g., "12345")
-    if (employeeID.trim() !== "" && employeeSSN === "12345") {
-      setLoggedIn(true);
-      setIsEmployee(true); // Set isEmployee context to true
-    } else {
-      alert("Invalid employee ID or SSN. Please try again."); // Show an alert for invalid input
+  const handleEmployeeLogin = async () => {
+    // print an attempt to login on the console
+    try {
+      const response = await axios.post('http://localhost:3001/login/employee', {
+        employeeID,
+        employeeSSN,
+      });
+
+      if (response.data.loggedIn) {
+        setLoggedIn(true);
+        setIsEmployee(true); // Set isEmployee context to true
+        navigate("/hotel-chains");
+      } else {
+        alert("Invalid employee ID or SSN. Please try again.");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);s
+      alert("Login failed. Please try again.");
     }
   };
-
-  const handleCustomerLogin = () => {
-    // Check if customerEmail and customerPassword are not empty
-    if (customerEmail.trim() !== "" && customerPassword.trim() !== "") {
-      setLoggedIn(true); // Set loggedIn to true
-    } else {
-      alert("Please enter a valid email and password."); // Show an alert for empty fields
+  
+  const handleCustomerLogin = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/login/customer', {
+        email: customerEmail,
+        password: customerPassword,
+      });
+      if (response.data.loggedIn) {
+        setLoggedIn(true);
+        setIsEmployee(false); // Assuming you have a mechanism to set this based on user type
+        navigate("/hotel-chains");
+      } else {
+        alert("Invalid email or password. Please try again.");
+      }
+    } catch (error) {
+      alert("Login failed. Please try again.");
     }
   };
 

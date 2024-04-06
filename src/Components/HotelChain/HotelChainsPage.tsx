@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HotelChain from "./HotelChain";
 import image1 from "../Assets/hotelchain_images/exterior-view (1).jpg";
 import image2 from "../Assets/hotelchain_images/exterior-view (2).jpg";
@@ -9,71 +9,24 @@ import { useIsEmployee } from "../../Context/IsEmployeeContext";
 import CreateHotelChain from "../Form/CreateHotelChain";
 
 function HotelChainsPage() {
+  const [hotelChains, setHotelChains] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [processedQuery, setProcessedQuery] = useState("");
   const [isCreateScreenVisible, setCreateScreenVisible] = useState(false);
+
+  useEffect(() => {
+    const fetchHotelChains = async () => {
+      const response = await fetch('http://localhost:3001/login/customer'); // Adjust the URL as necessary
+      const data = await response.json();
+      setHotelChains(data);
+    };
+
+    fetchHotelChains();
+  }, []); // Empty dependency array means this effect runs once on mount
+
   const handleAddButtonClick = () => {
     console.log("Add button clicked");
     setCreateScreenVisible(true);
   };
-  const hotelChains = [
-    {
-      id: 1,
-      name: "Marriott",
-      email: "info@marriott.com",
-      numHotels: 10,
-      phoneNumbers: ["123-456-7890", "987-654-3210"],
-      image: image1,
-    },
-    {
-      id: 2,
-      name: "Hilton",
-      email: "info@hilton.com",
-      numHotels: 8,
-      phoneNumbers: ["123-456-7890", "987-654-3210", "555-555-5555"],
-      image: image2,
-    },
-    {
-      id: 3,
-      name: "Hyatt",
-      email: "info@hyatt.com",
-      numHotels: 12,
-      phoneNumbers: ["123-456-7890"],
-      image: image3,
-    },
-    {
-      id: 4,
-      name: "Sheraton",
-      email: "info@sheraton.com",
-      numHotels: 6,
-      phoneNumbers: ["123-456-7890", "555-555-5555"],
-      image: image4,
-    },
-    {
-      id: 5,
-      name: "InterContinental",
-      email: "info@intercontinental.com",
-      numHotels: 15,
-      phoneNumbers: ["123-456-7890", "987-654-3210", "555-555-5555"],
-      image: image1,
-    },
-    {
-      id: 9,
-      name: "Marriott",
-      email: "info@marriott.com",
-      numHotels: 10,
-      phoneNumbers: ["123-456-7890", "987-654-3210"],
-      image: image1,
-    },
-    {
-      id: 10,
-      name: "Marriott",
-      email: "info@marriott.com",
-      numHotels: 10,
-      phoneNumbers: ["123-456-7890", "987-654-3210"],
-      image: image1,
-    },
-  ];
 
   const filteredHotelChains = hotelChains.filter((chain) =>
     chain.name.toLowerCase().includes(processedQuery.toLowerCase())
